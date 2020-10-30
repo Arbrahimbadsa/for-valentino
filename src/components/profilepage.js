@@ -6,6 +6,7 @@ const ProfilePage = () => {
 
     const [profileData, setProfileData] = useState('example1@gmail.com');
     const [email, setEmail] = useState('example1@gmail.com'); 
+    const [type, setType] = useState({});
 
 
     useEffect(() => {
@@ -16,7 +17,11 @@ const ProfilePage = () => {
     const handlClick = () => {
         getUser(email).then(data => {
             setProfileData(data);
-            console.log(data);
+            data.ID_Type.get().then(d => {
+                const typeData = d.data();
+                console.log(typeData); // test
+                setType(typeData);
+            });
         });
     }
 
@@ -32,7 +37,12 @@ const ProfilePage = () => {
                 <p>FirstName: {profileData && profileData.FirstName} </p>
                 <p>LastName: {profileData && profileData.LastName} </p>
                 <p>Points : {profileData && profileData.Points} </p>
-                <p>ID_Type: Client reference  </p>
+                <div className="type" style={{padding: '10px'}}>
+                    <b>Type</b>
+                    <p>Name:  {type && type.Name} </p>
+                    <p>Description: {type && type.Description} </p>
+                    <p>Advantages: {type && type.Advantages} </p>
+                </div>
                 <p>SignUpDate: data object </p>
             </div>
         </div>
