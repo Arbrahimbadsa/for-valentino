@@ -34,7 +34,7 @@ const GoalPage = () => {
         <div className="goal-page">
             <h3>Goal Page</h3>
             <p>
-                <input onChange={e => setEmail(e.target.value)} style={{margin: '0 10px'}} type="text" placeholder="Enter client email." />
+                <input value='example1@gmail.com' onChange={e => setEmail(e.target.value)} style={{margin: '0 10px'}} type="text" placeholder="Enter client email." />
                 <button onClick={handlClick}>Get</button>
             </p>
             <b>Missions</b>

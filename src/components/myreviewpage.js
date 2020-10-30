@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import firebase from 'firebase';
 import getIdByEmail from '../firebase/getIdByEmail';
 
@@ -7,8 +7,14 @@ const db = firebase.firestore();
 
 const MyReviewPage = () => {
 
-    const [email, setEmail] = useState(null);
+    const [email, setEmail] = useState('example1@gmail.com');
     const [reviews, setReviews] = useState([]);
+
+
+    useEffect(() => {
+        handlClick();
+    }, []);
+
 
     const handlClick = () => {
         
@@ -67,7 +73,7 @@ const MyReviewPage = () => {
         <div className="my-booking-page">
             <h3>My Reviews</h3>
             <p>
-                <input onChange={e => setEmail(e.target.value)} style={{margin: '0 10px'}} type="text" placeholder="Enter client email." />
+                <input value='example1@gmail.com' onChange={e => setEmail(e.target.value)} style={{margin: '0 10px'}} type="text" placeholder="Enter client email." />
                 <button onClick={handlClick}>Get</button>
 
             </p>
