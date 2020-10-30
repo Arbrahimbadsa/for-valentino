@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/for-valentino/static/css/main.6dea0f05.chunk.css",
+    "main.js": "/for-valentino/static/js/main.270f47a3.chunk.js",
+    "main.js.map": "/for-valentino/static/js/main.270f47a3.chunk.js.map",
+    "runtime-main.js": "/for-valentino/static/js/runtime-main.fa309ef6.js",
+    "runtime-main.js.map": "/for-valentino/static/js/runtime-main.fa309ef6.js.map",
+    "static/js/2.8d42c707.chunk.js": "/for-valentino/static/js/2.8d42c707.chunk.js",
+    "static/js/2.8d42c707.chunk.js.map": "/for-valentino/static/js/2.8d42c707.chunk.js.map",
+    "index.html": "/for-valentino/index.html",
+    "static/css/main.6dea0f05.chunk.css.map": "/for-valentino/static/css/main.6dea0f05.chunk.css.map",
+    "static/js/2.8d42c707.chunk.js.LICENSE.txt": "/for-valentino/static/js/2.8d42c707.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.fa309ef6.js",
+    "static/js/2.8d42c707.chunk.js",
+    "static/css/main.6dea0f05.chunk.css",
+    "static/js/main.270f47a3.chunk.js"
+  ]
+}
