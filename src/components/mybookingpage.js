@@ -7,7 +7,7 @@ const db = firebase.firestore();
 
 const MyBookingPage = () => {
 
-    const [email, setEmail] = useState('example1@gmail.com');
+    const [email, setEmail] = useState('example2@gmail.com');
     const [booking, setBooking] = useState([]);
 
 
@@ -21,8 +21,18 @@ const MyBookingPage = () => {
             
             // get the booking associated with this client
             db.collection('Bookings').doc(id.toString()).get().then(booking => {
-                console.log(booking.data()); // this is out booking data
-                setBooking(booking.data()); // set the data to the state
+                let date = new Date(booking.data().BookingDate.seconds);
+                let seconds = date.getSeconds();
+                let minutes = date.getMinutes();
+                let hours = date.getHours();
+                let day = date.getDay();
+                let month = date.getMonth();
+                let year = date.getFullYear();
+                const bookingData = {...booking.data(), bookingDate: {seconds, minutes, hours, day, month, year}};
+                console.log(bookingData.bookingDate.day); // day
+                console.log(bookingData.bookingDate.month); // month
+                console.log(bookingData.bookingDate.hours); // hours
+                setBooking(bookingData); // set the data to the state
             });
 
         });
