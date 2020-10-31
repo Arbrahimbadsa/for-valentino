@@ -10,6 +10,7 @@ const GoalPage = () => {
 
     const [email, setEmail] = useState(null);
     const [missions, setMissions] = useState([]);
+    const [allStatus, setAllStatus] = useState([]);
 
     useEffect(() => {
         getMissions().then(missions => {
@@ -20,8 +21,11 @@ const GoalPage = () => {
     const handlClick = () => {
         getIdByEmail(email).then(id => {
             setMissions([]);
+            setAllStatus([]);
             db.collection('Clients/' + id + '/Missions').get().then(data => {
                 data.docs.map(doc => {
+                    const status = doc.data().Status;
+                    setAllStatus(sts => [...sts, status]);
                     doc.data().ID_Mission.get().then(missionsData => {
                         setMissions(msns => [...msns, missionsData.data()]);
                     });
