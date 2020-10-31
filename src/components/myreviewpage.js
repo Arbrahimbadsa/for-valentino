@@ -42,20 +42,37 @@ const MyReviewPage = () => {
 
                         getIdByEmail(email).then(clientId => {
 
-                            // now let's make our ref to review
-                            const reviewDocRef = db.doc('Restaurants/' + restaurantId + '/Branch/' + branchId + '/Reviews/' + clientId);
-                            reviewDocRef.get().then(review => {
+                            // // now let's make our ref to review
+                            // const reviewDocRef = db.doc('Restaurants/' + restaurantId + '/Branch/' + branchId + '/Reviews/' + clientId);
+                            // reviewDocRef.get().then(review => {
                                 
-                                // reivew data
-                                const reviewData = review.data();
-                                console.log(reviewData); // test
-                                if (reviewData) {
-                                    // if review exits
-                                    setReviews(rvs => [...rvs, reviewData]); // add to the state to render in the component
-                                }
+                            //     // reivew data
+                            //     const reviewData = review.data();
+                            //     console.log(reviewData); // test
+                            //     if (reviewData) {
+                            //         // if review exits
+                            //         setReviews(rvs => [...rvs, reviewData]); // add to the state to render in the component
+                            //     }
                                 
 
+                            // });
+
+
+                            /**** Updated query ****/
+                            
+                            const reviewsRef = db.collection('Restaurants/' + restaurantId + '/Branch/' + branchId + '/Reviews');
+                            reviewsRef.get().then(data => {
+                                data.docs.map(doc => {
+                                    const reviewData = doc.data();
+                                    const reviewClientId = reviewData.ID_Client;
+                                    if (clientId == reviewClientId) {
+                                        // filtered review
+                                        if(reviewData) setReviews(rvs => [...rvs, reviewData]);
+                                    }
+                                });
                             });
+                            //////////-----------------------------////////
+
 
                         });
 
