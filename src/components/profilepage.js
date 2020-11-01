@@ -17,11 +17,11 @@ const ProfilePage = () => {
     const handlClick = () => {
         getUser(email).then(data => {
             setProfileData(data);
-            data.ID_Type.get().then(d => {
-                const typeData = d.data();
-                console.log(typeData); // test
-                setType(typeData);
-            });
+            // data.ID_Type.get().then(d => {
+            //     const typeData = d.data();
+            //     console.log(typeData); // test
+            //     setType(typeData);
+            // });
         });
     }
 
