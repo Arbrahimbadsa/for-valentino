@@ -7,6 +7,7 @@ const StatsPage = () => {
 
     const [branchesByPriceOrder, setBranchesByPriceOrder] = useState([]);
     const [branchesByRate, setBranchesByRate] = useState([]);
+    const [branches, setBranches] = useState([]);
     const [price, setPrice] = useState(null);
     const [rate, setRate] = useState(null);
 
@@ -19,16 +20,17 @@ const StatsPage = () => {
                         const branchData = branchDoc.data();
                         const branchPrice = branchData.price;
                         const branchRate = branchData.rate;
-                        // filter the branches.
-                        // if the branch price is less than our inputed price then we are getting the right branches
-                        if (branchPrice <= price) {
-                            if (branchData) setBranchesByPriceOrder(vls => [...vls, branchData]);
-                        }
 
-                        // filter the branches by rate
-                        if (branchRate <= rate) {
-                            if (branchData) setBranchesByRate(vls => [...vls, branchData]);
+                        // filter the branches.
+                        if (price && rate) {
+                            // if both price and rate are used to filter
+                            if (branchPrice <= price && branchRate <= rate && branchData) setBranches(bcs => [...bcs, branchData]); 
+                        } else if (price && !rate) {
+                            if (branchPrice <= price && branchData) setBranches(bcs => [...bcs, branchData]);
+                        } else if (!price && rate) {
+                            if (branchRate <= rate && branchData) setBranches(bcs => [...bcs, branchData]);
                         }
+                        
                     });
                 });
             });
