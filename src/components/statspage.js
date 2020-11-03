@@ -10,6 +10,20 @@ const StatsPage = () => {
     const [branches, setBranches] = useState([]);
     const [price, setPrice] = useState(null);
     const [rate, setRate] = useState(null);
+    const [category, setCategory] = useState('');
+
+    const [restaurantsByCategory, setRestaurantsByCategory] = useState([]);
+
+    const orderByCategoryClick = () => {
+        db.collection('Restaurants').get().then(data => {
+            data.docs.map(doc => {
+                const restaurantData = doc.data();
+                if (restaurantData.Activity === category) {
+                    if (restaurantData) setRestaurantsByCategory(rts => [...rts, restaurantData]);
+                }
+            });
+        });
+    }
 
     const orderByPriceHandleClick = () => {
         db.collection('Restaurants').get().then(data => {
@@ -40,6 +54,18 @@ const StatsPage = () => {
     return (
         <div className='stats-page'>
             <h3>Stats Page</h3>
+
+
+            <p>
+                <input type='text' placeholder='Enter category' style={{margin: '0 10px'}} onChange={e => setCategory(e.target.value)} />
+                <button onClick={orderByCategoryClick}>Filter</button>
+            </p>
+
+            <b>Filter by Category</b>
+            <div>
+                {restaurantsByCategory && restaurantsByCategory.map((resData, i) => <p key={i}> {resData.Name} </p>)}
+            </div>
+
             <p>
                 <input type='number' placeholder='Enter price' style={{margin: '0 10px'}} onChange={e => setPrice(e.target.value)} />
                 <button onClick={orderByPriceHandleClick}>Filter</button>
