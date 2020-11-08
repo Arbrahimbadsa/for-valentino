@@ -6,6 +6,7 @@ import MyBookingPage from './components/mybookingpage';
 import MyReviewPage from './components/myreviewpage';
 import MyFavoritesPage from './components/myfavoritepage';
 import StatsPage from './components/statspage';
+import RealtimeData from './components/realtimeData';
 
 
 
@@ -14,7 +15,7 @@ const App = () => {
   return (
     <div style={{padding: '0 20px'}} className="app">
       <p>By default we are only getting clinet 1 which has example1@gmail.com as email</p>
-      <MyFavoritesPage />
+      <RealtimeData />
       <StatsPage />
       <GoalPage />
       <ProfilePage />

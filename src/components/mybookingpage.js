@@ -69,7 +69,17 @@ const MyBookingPage = () => {
 
     useEffect(() => {
         handlClick();
+        getBranchData();
+        console.log('hello world');
     }, []);
+
+    const getBranchData = () => {
+        db.collection('Bookings').get().then(data => {
+            data.docs.map(doc => {
+                console.log(doc.ID_Branch);
+            });
+        });
+    }
 
 
     const handlClick = () => {
